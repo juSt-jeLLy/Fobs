@@ -455,7 +455,7 @@ export default function Home() {
           </div>
           <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
             <p className="text-base text-gray-500 dark:text-gray-400 text-center">
-              &copy; {new Date().getFullYear()} Your Company, Inc. All rights reserved.
+              &copy; {new Date().getFullYear()} FOBS, Inc. All rights reserved.
             </p>
           </div>
         </div>
