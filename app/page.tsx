@@ -37,7 +37,11 @@ const categoryIcons = {
     </svg>
   ),
 };
-
+const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
+  if (ref && ref.current) {
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState(mockData);
@@ -47,7 +51,7 @@ export default function Home() {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 100], [1, 0.8]);
   const scale = useTransform(scrollY, [0, 100], [1, 0.95]);
-
+  const featuredResourcesRef = useRef<HTMLDivElement>(null);
   // Filter results based on search term
   useEffect(() => {
     if (searchTerm.trim() === "") {
@@ -130,23 +134,29 @@ export default function Home() {
               </motion.div>
               
               <div className="hidden md:flex ml-10 space-x-8">
-                {["Home", "Features", "Pricing", "About"].map((item) => (
-                  <motion.a
-                    key={item}
-                    href="#"
-                    className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium relative"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item}
-                    <motion.div 
-                      className="absolute bottom-0 left-0 h-0.5 bg-indigo-500 w-0"
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </motion.a>
-                ))}
-              </div>
+  {["Home", "Features", "Pricing", "About"].map((item) => (
+    <motion.a
+      key={item}
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        if (item === "Features" && featuredResourcesRef.current) {
+          scrollToSection(featuredResourcesRef);
+        }
+      }}
+      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 text-sm font-medium relative cursor-pointer"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {item}
+      <motion.div 
+        className="absolute bottom-0 left-0 h-0.5 bg-indigo-500 w-0"
+        whileHover={{ width: "100%" }}
+        transition={{ duration: 0.2 }}
+      />
+    </motion.a>
+  ))}
+</div>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -420,7 +430,7 @@ export default function Home() {
                 </div>
           
                 {/* Featured Content */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-indigo-50 dark:bg-gray-800/50 rounded-3xl my-12">
+                <div ref={featuredResourcesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-indigo-50 dark:bg-gray-800/50 rounded-3xl my-12">
                   <motion.div 
                     className="text-center mb-12"
                     initial={{ opacity: 0 }}
