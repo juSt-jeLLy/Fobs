@@ -16,6 +16,13 @@ const mockData = [
   { id: 8, title: "UI Design Patterns", category: "Design", url: "https://ui-patterns.com/" },
   { id: 9, title: "Web Accessibility", category: "Development", url: "https://www.w3.org/WAI/" },
   { id: 10, title: "Color Theory", category: "Design", url: "https://color.adobe.com/" },
+  // Adding 6 more entries
+  { id: 11, title: "Three.js 3D Graphics", category: "Animation", url: "https://threejs.org/" },
+  { id: 12, title: "GraphQL API Design", category: "Development", url: "https://graphql.org/" },
+  { id: 13, title: "UI/UX Best Practices", category: "Design", url: "https://www.nngroup.com/articles/" },
+  { id: 14, title: "GSAP Animation Library", category: "Animation", url: "https://greensock.com/gsap/" },
+  { id: 15, title: "Responsive Web Design", category: "Design", url: "https://web.dev/responsive-web-design-basics/" },
+  { id: 16, title: "Docker Containerization", category: "Development", url: "https://docs.docker.com/get-started/" },
 ];
 
 // Category icons mapping
@@ -429,87 +436,59 @@ export default function Home() {
                   </div>
                 </div>
           
-                {/* Featured Content */}
-                <div ref={featuredResourcesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-indigo-50 dark:bg-gray-800/50 rounded-3xl my-12">
-                  <motion.div 
-                    className="text-center mb-12"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Featured Resources</h2>
-                    <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-                      Handpicked content to help you learn and grow
-                    </p>
-                  </motion.div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {mockData.slice(0, 6).map((item, index) => (
-                      <motion.a
-                        key={item.id}
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col h-full border border-gray-200 dark:border-gray-700"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 + index * 0.1 }}
-                        whileHover={{ 
-                          scale: 1.03,
-                          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <motion.div 
-                          className="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center p-6 relative overflow-hidden"
-                          whileHover={{ 
-                            backgroundPosition: ["0% 0%", "100% 100%"],
-                          }}
-                          transition={{ duration: 3, repeat: Infinity, repeatType: "mirror" }}
-                        >
-                          <motion.div 
-                            className="absolute inset-0 opacity-20"
-                            animate={{ 
-                              backgroundImage: [
-                                "radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 70%)",
-                                "radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 70%)"
-                              ]
-                            }}
-                            transition={{ duration: 5, repeat: Infinity, repeatType: "mirror" }}
-                          />
-                          <h3 className="text-xl font-bold text-white text-center relative z-10">{item.title}</h3>
-                        </motion.div>
-                        <div className="p-6 flex-grow">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
-                            <span className="mr-1.5">{categoryIcons[item.category as keyof typeof categoryIcons]}</span>
-                            {item.category}
-                          </span>
-                          <p className="mt-4 text-gray-600 dark:text-gray-300">
-                            Explore comprehensive guides and tutorials about {item.title.toLowerCase()}.
-                          </p>
-                        </div>
-                        <div className="px-6 pb-4">
-                          <motion.div 
-                            className="flex items-center text-indigo-600 dark:text-indigo-400 font-medium"
-                            whileHover={{ x: 5 }}
-                          >
-                            <span>Learn more</span>
-                            <motion.svg 
-                              className="ml-2 h-4 w-4" 
-                              xmlns="http://www.w3.org/2000/svg" 
-                              viewBox="0 0 20 20" 
-                              fill="currentColor"
-                              animate={{ x: [0, 3, 0] }}
-                              transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                            >
-                              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </motion.svg>
-                          </motion.div>
-                        </div>
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
+             
+              {/* Featured Content */}
+              <div ref={featuredResourcesRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-indigo-50 dark:bg-gray-800/50 rounded-3xl my-12">
+  <motion.div 
+    className="text-center mb-12"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 0.5 }}
+  >
+    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Featured Resources</h2>
+    <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+      Handpicked content to help you learn and grow
+    </p>
+  </motion.div>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {mockData.slice(0, 12).map((item, index) => (
+      <motion.a
+        key={item.id}
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col h-full border border-gray-200 dark:border-gray-700"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 + index * 0.1 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div className="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center p-6">
+          <h3 className="text-xl font-bold text-white text-center">{item.title}</h3>
+        </div>
+        <div className="p-6 flex-grow">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
+            {item.category}
+          </span>
+          <p className="mt-4 text-gray-600 dark:text-gray-300">
+            Explore comprehensive guides and tutorials about {item.title.toLowerCase()}.
+          </p>
+        </div>
+        <div className="px-6 pb-4">
+          <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-medium">
+            <span>Learn more</span>
+            <svg className="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      </motion.a>
+    ))}
+  </div>
+</div>
+
           
                 {/* Newsletter */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
